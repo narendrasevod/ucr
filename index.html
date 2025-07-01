@@ -9,75 +9,131 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://images.unsplash.com/photo-1510915361894-db8b60106cb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
-            background-size: cover;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
             color: #fff;
             text-align: center;
-            min-height: 100vh; /* Changed from height to min-height */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden; /* Prevents horizontal scroll */
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Particle Effect */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            background: rgba(255, 204, 0, 0.8);
+            border-radius: 50%;
+            animation: floatUp 6s infinite linear;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
         }
         .welcome-text {
             font-size: 3.5em;
             font-weight: bold;
             text-transform: uppercase;
-            animation: glowAndFade 3s ease-in-out infinite;
-            text-shadow: 0 0 15px #ffcc00, 0 0 30px #ff4500;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 10px 20px;
-            border-radius: 10px;
-            margin: 20px 0; /* Added margin for spacing */
+            animation: glowAndPulse 3s ease-in-out infinite;
+            text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff4500;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            z-index: 1;
         }
-        @keyframes glowAndFade {
-            0% { opacity: 0.8; text-shadow: 0 0 10px #ffcc00; }
-            50% { opacity: 1; text-shadow: 0 0 25px #ff4500; }
-            100% { opacity: 0.8; text-shadow: 0 0 10px #ffcc00; }
+        @keyframes glowAndPulse {
+            0% { opacity: 0.9; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.9; transform: scale(1); }
         }
         .intro {
             max-width: 600px;
-            margin: 20px auto; /* Centered with margin */
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-            animation: float 4s ease-in-out infinite;
+            margin: 20px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+            animation: floatAndRotate 5s ease-in-out infinite;
+            z-index: 1;
         }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
+        @keyframes floatAndRotate {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0) rotate(0deg); }
         }
         .buttons {
-            margin: 30px 0;
-            padding-bottom: 20px; /* Added padding to ensure footer space */
+            margin: 40px 0;
+            padding-bottom: 20px;
+            z-index: 1;
         }
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            margin: 10px;
-            font-size: 1.2em;
+            padding: 18px 35px;
+            margin: 15px;
+            font-size: 1.3em;
             color: #fff;
-            background: linear-gradient(45deg, #ff4500, #ffcc00);
+            background: linear-gradient(45deg, #ff4500, #ffcc00, #ffeb3b);
             border: none;
-            border-radius: 25px;
+            border-radius: 30px;
             text-decoration: none;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            top: 0;
+            left: -100%;
+            transition: 0.5s;
+        }
+        .btn:hover::after {
+            width: 100%;
+            left: 0;
         }
         .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px #ffcc00;
+            transform: scale(1.15);
+            box-shadow: 0 0 20px #ffcc00, 0 0 40px #ff4500;
+            background: linear-gradient(45deg, #ff6600, #ffd700);
         }
         p {
-            font-size: 1.3em;
-            line-height: 1.8;
+            font-size: 1.4em;
+            line-height: 1.9;
             color: #e0e0e0;
+            text-shadow: 1px 1px 3px #000;
         }
     </style>
+    <script>
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = Math.random() * 4 + 2 + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        window.onload = createParticles;
+    </script>
 </head>
 <body>
+    <div class="particles"></div>
     <div class="welcome-text">Hey, welcome to my site! I am Uditi the Rockstar</div>
     <div class="intro">
         <p>Step into my world of music and poetry! I’m Uditi, blending rockstar vibes with heartfelt verses. Explore my journey here! 🎸📝</p>
