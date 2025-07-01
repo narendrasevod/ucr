@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uditi's Rockstar Site</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .welcome-text {
+            font-size: 3.5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: glowAndFade 3s ease-in-out infinite;
+            text-shadow: 0 0 15px #ffcc00, 0 0 30px #ff4500;
+        }
+        @keyframes glowAndFade {
+            0% { opacity: 0.8; text-shadow: 0 0 10px #ffcc00; }
+            50% { opacity: 1; text-shadow: 0 0 25px #ff4500; }
+            100% { opacity: 0.8; text-shadow: 0 0 10px #ffcc00; }
+        }
+        .intro {
+            max-width: 600px;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+        .star {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-text">Hey, welcome to my site! I am Uditi the Rockstar</div>
+    <div class="intro">
+        <p>Get ready to experience a world of creativity and energy! I’m Uditi, your rockstar guide, bringing passion and vibes to this digital stage. Stay tuned for more! 🎸✨</p>
+    </div>
+    <!-- Adding some twinkling stars for beauty -->
+    <div class="star" style="top: 10%; left: 20%;"></div>
+    <div class="star" style="top: 30%; left: 70%;"></div>
+    <div class="star" style="top: 60%; left: 40%;"></div>
+</body>
+</html>
